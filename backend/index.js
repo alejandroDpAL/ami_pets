@@ -1,6 +1,9 @@
 import express from 'express';
-import body_parser from 'body-parser';
+import bodyParser from 'body-parser';
 import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 import RutasUsuarios from './src/Routes/Usuarios.routes.js';
 import { rutasMascotas } from './src/Routes/Mascotas.routes.js';
@@ -15,10 +18,12 @@ const servidor = express();
 const port = 3000;
 
 servidor.use(cors());
-servidor.use(body_parser.json());
-servidor.use(body_parser.urlencoded({ extended: false }));
+servidor.use(bodyParser.json());
+servidor.use(bodyParser.urlencoded({ extended: false }));
 
-// Rutas
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 servidor.use('/usuarios', RutasUsuarios);
 servidor.use('/mascotas', rutasMascotas);
 servidor.use('/fotos', rutasFotos);
@@ -27,10 +32,9 @@ servidor.use('/vacunas', RutasVacunas);
 servidor.use('/trato', RutasCasos);
 servidor.use('/historial', RutasHistorial);
 
-servidor.use('/uploads', express.static('public/uploads'));
-servidor.use('/img', express.static('public/img'));
+servidor.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
+servidor.use('/img', express.static(path.join(__dirname, 'public/img')));
 
-// Ruta para validación
 servidor.use(rutaValidacion);
 
 servidor.listen(port, () => {
