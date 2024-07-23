@@ -1,12 +1,15 @@
 import React from 'react';
 
-const Boton = ({ text, onClick }) => (
-  <button
-    onClick={onClick}
-    className="w-2/3 px-4 py-2 my-2 mr-2 flex justify-center text-xl font-medium text-white bg-yellow-600 rounded-md hover:bg-yellow-700"
-  >
-    {text}
-  </button>
-);
+function Boton({ text, onClick, type }) {
+  return (
+    <button
+      type={type || 'button'}
+      onClick={onClick}
+      className="bg-yellow-500 text-white py-2 px-4 rounded"
+    >
+      {text}
+    </button>
+  );
+}
 
 export default Boton;
