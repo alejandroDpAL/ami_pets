@@ -54,9 +54,9 @@ function Principal() {
 
   const handleEditClick = async (id) => {
     try {
-      const response = await axios.get(`${Url}/mascotas/listar_id/${id}`);
+      const response = await axios.put(`${Url}/mascotas/actualizar/${id}`);
       setSelectedMascota(response.data);
-      setModo("editar");
+      setModo("add");
       toggleModalAgregar();
     } catch (error) {
       console.error("Error fetching mascota data:", error);
@@ -65,7 +65,7 @@ function Principal() {
 
   const handleAddClick = () => {
     setSelectedMascota(null);
-    setModo("registrar");
+    setModo("add");
     toggleModalAgregar();
   };
 

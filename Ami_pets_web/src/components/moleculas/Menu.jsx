@@ -9,7 +9,6 @@ const Menu = ({ isOpen, handleClose }) => {
         isOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >
-      {/* Botón para cerrar el menú */}
       <div className="flex justify-end p-4">
         <FaTimes
           className="text-white text-2xl cursor-pointer"
@@ -17,9 +16,9 @@ const Menu = ({ isOpen, handleClose }) => {
         />
       </div>
 
-      {/* Contenido del menú */}
+      {/* Contenido del menú lo de adentro */}
       <div className="p-4">
-        {/* Avatar y nombre de usuario */}
+
         <div className="flex flex-col items-center space-y-4">
           <div className="relative">
             <img
@@ -51,7 +50,7 @@ const Menu = ({ isOpen, handleClose }) => {
             Mascotas
           </Link>
           <Link
-            to="/principal"
+            to="/adopciones"
             className="block py-2 text-xl hover:bg-yellow-800 rounded-xl pl-2 "
           >
             Adopciones

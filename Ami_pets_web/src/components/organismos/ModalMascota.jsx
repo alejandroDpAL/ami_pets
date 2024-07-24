@@ -25,6 +25,11 @@ const ModalMascotas = ({ isOpen, handleClose, title, mascota }) => {
 
   if (!isOpen) return null;
 
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center">
       <div className="fixed inset-0 transition-opacity" aria-hidden="true">
@@ -68,7 +73,7 @@ const ModalMascotas = ({ isOpen, handleClose, title, mascota }) => {
                   <p><b>Vacunas:</b> {mascota.vacunas}</p>
                   <p><b>Discapacidades:</b> {mascota.discapacidades}</p>
                   <p><b>Trato Especial:</b> {mascota.trato_especial}</p>
-                  <p><b>Fecha de Publicación:</b> {mascota.fecha_publicacion}</p>
+                  <p><b>Fecha de Publicación:</b> {formatDate(mascota.fecha_publicacion)}</p>
                 </div>
                 <button
                   className={`mt-4 ml-[90px] px-3 py-1.5 w-[180px] text-white rounded flex items-center ${adoptarStatus === 'Quiero adoptar' ? 'bg-green-500' : 'bg-red-500'}`}

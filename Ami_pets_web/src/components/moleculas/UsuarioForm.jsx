@@ -3,8 +3,7 @@ import Input from '../atoms/Input.jsx';
 import Boton from '../atoms/Boton.jsx';
 import axios from 'axios';
 import { Url } from '../../../Url.jsx';
-import { CardMedia } from '@mui/material';
-import { AiFillMedicineBox, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { FaCameraRetro } from 'react-icons/fa6';
 
 function UsuarioForm({ onClose }) {
@@ -37,36 +36,42 @@ function UsuarioForm({ onClose }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
+    // Verifica que el archivo esté presente antes de continuar
+    if (!formData.foto) {
+      alert('Por favor, selecciona una foto.');
+      return;
+    }
+  
     const formDataToSend = new FormData();
     Object.entries(formData).forEach(([key, value]) => {
       if (value) {
         formDataToSend.append(key, value);
       }
     });
-
-    for (let pair of formDataToSend.entries()) {
-      console.log(`${pair[0]}: ${pair[1]}`);
-    }
-
+  
     try {
       const response = await axios.post(`${Url}/usuarios/crear`, formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-
-      if (response.status === 201) {
+  
+      // Maneja la respuesta exitosa
+      if (response.status === 201 || response.status === 200) {
         alert('Usuario creado con éxito');
-        onClose();
+        onClose(); // Cierra el formulario o redirecciona según sea necesario
       } else {
         alert('Error al crear el usuario');
       }
     } catch (error) {
+      // Maneja el error
       console.error('Error al conectar con el servidor:', error);
       alert('Error al conectar con el servidor');
     }
   };
+  
+  
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col space-y-4">

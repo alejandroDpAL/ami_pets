@@ -17,7 +17,7 @@ function Buscador({ onSearch }) {
         type="text"
         value={searchTerm}
         onChange={handleInputChange}
-        placeholder="Buscar mascota..."
+        placeholder="Buscar..."
         className="p-2 w-[500px] h-[46px] rounded-l-md border border-gray-300 focus:outline-none focus:border-yellow-500"
       />
       <button
