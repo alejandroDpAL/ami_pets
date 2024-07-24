@@ -82,9 +82,6 @@ function Principal() {
 
   return (
     <>
-      <Header userName={"mario "} />
-      <Buscador onSearch={handleSearch} />
-
       <div
         className={`container mx-auto mt-10 ${
           menuOpen ? "opacity-50 pointer-events-none" : ""

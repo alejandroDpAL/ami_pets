@@ -9,8 +9,8 @@ import { Url } from "../../../Url";
 
 function LoginForm() {
   const [showModal, setShowModal] = useState(false);
-  const [correo, setCorreo] = useState(""); // Inicializa correo como cadena vacía
-  const [password, setPassword] = useState(""); // Inicializa password como cadena vacía
+  const [correo, setCorreo] = useState(""); 
+  const [password, setPassword] = useState(""); 
 
   const handleOpenModal = () => {
     setShowModal(true);

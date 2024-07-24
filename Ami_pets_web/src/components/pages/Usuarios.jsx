@@ -37,7 +37,6 @@ const Usuarios = () => {
 
   return (
     <>
-      <Header userName={"mario "} />
       <Buscador onSearch={handleSearch} />
       <div className="p-4">
         {cargando ? (
