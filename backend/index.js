@@ -26,11 +26,7 @@ const __dirname = dirname(__filename);
 
 servidor.use('/usuarios', RutasUsuarios);
 servidor.use('/mascotas', rutasMascotas);
-servidor.use('/fotos', rutasFotos);
 servidor.use('/adopciones', rutasAdopciones);
-servidor.use('/vacunas', RutasVacunas);
-servidor.use('/trato', RutasCasos);
-servidor.use('/historial', RutasHistorial);
 
 servidor.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 servidor.use('/img', express.static(path.join(__dirname, 'public/img')));

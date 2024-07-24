@@ -116,3 +116,27 @@ export const EliminarUsuarios = async (req, res) => {
     });
   }
 }
+/* buscar */
+export const BuscarUsuarios = async (req, res) => {
+  const { query } = req.query;
+  try {
+    const [usuarios] = await pool.query(
+      `SELECT * FROM usuarios 
+       WHERE nombre LIKE ? 
+       OR correo LIKE ? 
+       OR telefono LIKE ?`,
+      [`%${query}%`, `%${query}%`, `%${query}%`]
+    );
+    if (usuarios.length > 0) {
+      res.status(200).json(usuarios);
+    } else {
+      res.status(404).json({
+        message: 'No se encontraron usuarios que coincidan con la búsqueda'
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error al conectar con el servidor ' + error
+    });
+  }
+};
